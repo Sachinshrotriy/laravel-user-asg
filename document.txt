@@ -1,0 +1,80 @@
+
+# Laravel 12 User API - Minimal Documentation
+
+This Laravel 12 application provides a basic API for managing users.
+
+---
+
+## ✅ Setup Instructions
+
+1. Clone the repository or extract the ZIP
+2. Run the following commands:
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed --class=UserSeeder
+php artisan serve
+```
+
+---
+
+## 🔗 API Endpoints
+
+### 1. Get All Users
+
+- **Method**: GET  
+- **URL**: `/api/users`  
+- **Response**: JSON list of all users
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Amit Sharma",
+    "email": "amit@example.com"
+  },
+  ...
+]
+```
+
+---
+
+### 2. Get User by ID
+
+- **Method**: GET  
+- **URL**: `/api/users/{id}`  
+- **Response**: JSON of the user or 404 if not found
+
+```json
+{
+  "id": 1,
+  "name": "Amit Sharma",
+  "email": "amit@example.com"
+}
+```
+
+---
+
+## 📦 Seeder Data
+
+Seeder inserts 15 users with Indian names into the `users` table with default password: `password`.
+
+---
+
+## 🧱 Routes Summary (routes/api.php)
+
+```php
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+```
+
+---
+
+## 💬 Notes
+
+- All passwords are hashed.
+- No authentication required for accessing endpoints (for learning purposes).
+
